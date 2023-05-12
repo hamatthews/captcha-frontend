@@ -27,7 +27,7 @@ export default function GameOver({level}) {
             if (!submitted && inputRef.current.value.trim()) {
                 setSubmitted(true);
     
-                fetch("http://localhost:8000/scoreboard/", {
+                fetch("https://captcha-backend.onrender.com/scoreboard/", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const [leaders, setLeaders] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8000/scoreboard/")
+        fetch("https://captcha-backend.onrender.com/scoreboard/")
         .then(res => res.json())
         .then(data => setLeaders(data.sort((a,b) => b.level - a.level)))
 
