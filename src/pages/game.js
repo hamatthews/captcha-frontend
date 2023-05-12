@@ -7,7 +7,6 @@ import '../styles/game.css';
 export default function Game({level, setLevel}) {
     const navigate = useNavigate();
 
-    // const [level, setLevel] = useState(1);
     const [timer, setTimer] = useState(-1);
     const [blockData, setBlockData] = useState([]);
 
@@ -125,19 +124,11 @@ export default function Game({level, setLevel}) {
 
     return (
         <div className='game-content'>
-            <nav>Level: {level}</nav>
+            <div className='level-tracker'>Level: {level}</div>
             <div className='captcha-blocks'>
-                {blockData.map((e,i) => <CaptchaBlock blockIndex={i} {...{level, blockData, setBlockData}} key={`block-${i}`}/>)}
+                {blockData.map((e,i) => <CaptchaBlock blockIndex={i} {...{level, timer, blockData, setBlockData}} key={`block-${i}`}/>)}
             </div>
             <div className='timer-bar' style={timerWidth}></div>
         </div>
     )
 }
-
-// maybe add motivational quotes about what it means to be human
-
-/*
-We don't need to authentication, but we should have the opening
-screen prompt you to enter a username and password
-(whatever you enter, it will tell you your password is wrong, and then will show you the checkbox)
-*/

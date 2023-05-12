@@ -4,7 +4,7 @@ import CaptchaImage from './captchaImage';
 
 import '../styles/captchaBlock.css';
 
-export default function CaptchaBlock({level, blockIndex, blockData, setBlockData}) {
+export default function CaptchaBlock({level, timer, blockIndex, blockData, setBlockData}) {
     const {imageList, imageType, challengeTypes, verified} = blockData[blockIndex];
 
     // console.log(blockData[blockIndex])
@@ -16,15 +16,14 @@ export default function CaptchaBlock({level, blockIndex, blockData, setBlockData
         if (level) {
             setTimeout(() => setDisplayOn(true), 600);
         }
-        else setDisplayOn(false);
     }, [level])
 
 
     useEffect(() => {
-        if (verified) {
+        if (timer > 10) {
             setDisplayOn(false);
         }
-    }, [verified]);
+    }, [timer]);
 
     useEffect(() => {
         if (gridRef.current && gridHeight !== gridRef.current.clientWidth) {
@@ -33,6 +32,8 @@ export default function CaptchaBlock({level, blockIndex, blockData, setBlockData
     })
 
     const clickVerify = () => {
+        setDisplayOn(false);
+
         const verification = imageList.every(e => {
             if ((e.clicked && e.type === imageType)
             || !e.clicked && e.type !== imageType) {
@@ -56,7 +57,7 @@ export default function CaptchaBlock({level, blockIndex, blockData, setBlockData
     const challengeClasses = challengeTypes.length ? challengeTypes.join(' ') : '';
 
     return (
-        <div className={`captcha-block ${challengeClasses}`}>
+        <div className={`captcha-block ${displayClass} ${challengeClasses}`}>
             <div className='captcha-banner'>
                 <p>Select all images with</p>
                 <h1>{imageType}</h1>

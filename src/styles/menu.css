@@ -8,6 +8,7 @@
     box-shadow: 0 0 0 3px rgb(210,210,210);
     border-radius: 4px;
     overflow: hidden;
+    /* background-color: rgba(255,255,255,.1); */
 }
 
 .menu-content {
@@ -40,16 +41,8 @@
 
 .menu-content > button {
     width: 100%;
+    font-size: 18px;
 }
-
-.start-game-button {
-    background-color: var(--blue-1);
-    color: white;
-}
-
-/* .start-game-button.display-on {
-
-} */
 
 .menu-flash {
     position: absolute;
@@ -75,6 +68,7 @@
     padding: 5px 10px;
     width: calc(100% - 20px);
     opacity: 1;
+    font-size: 24px;
 }
 
 .name-entry.submitted, .submit-button.submitted {

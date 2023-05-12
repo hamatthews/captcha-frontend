@@ -50,7 +50,7 @@ export default function GameOver({level}) {
                     <img src='/arrow-wheel.svg'/>
                     <h1>You got to Level {level}!</h1>
                 </div>
-                <input className={`name-entry ${submittedClass}`} ref={inputRef} maxlength='12' placeholder='Enter your name' onKeyDown={submitScore}/>
+                <input className={`name-entry ${submittedClass}`} ref={inputRef} maxLength='12' placeholder='Enter your name' onKeyDown={submitScore}/>
                 <button className={`submit-button ${submittedClass}`} onClick={submitScore}>Submit Score</button>
                 <button className='new-game-button' onClick={() => changePage('/game')}>New Game</button>
                 <button className='menu-button' onClick={() => changePage('/menu')}>Main Menu</button>
