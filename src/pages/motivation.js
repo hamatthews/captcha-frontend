@@ -41,8 +41,6 @@ export default function Motivation({playSound}) {
         setTimeout(() => navigate(path), 600);
         playSound('beep');
     }
-    
-
 
     return (
         <div className='motivation menu'>
@@ -52,8 +50,23 @@ export default function Motivation({playSound}) {
                     <h1>Quotes About Being Human</h1>
                 </div>
                 <div className='text-block'>
-                    <p>{quote.content}</p>
-                    <p className='author-name'>- {quote.author}</p>
+                    {quote.content ? <>
+                            <p>{quote.content}</p>
+                            <p className='author-name'>- {quote.author}</p>
+                        </>                        
+                        : <>
+                            <div className='loading-caption'>Loading</div>
+                            <div className='loading loading-1'>
+                                <div className='loading-light'></div>
+                            </div>
+                            <div className='loading loading-2'>
+                                <div className='loading-light'></div>
+                            </div>
+                            <div className='loading loading-3'>
+                                <div className='loading-light'></div>
+                            </div>
+                        </>
+                    }
                 </div>
                 <button className='new-quote-button' onClick={() => {generateQuote(); playSound('beep');}}>New Quote</button>
                 <button className='menu-button' onClick={() => changePage('/menu')}>Main Menu</button>
