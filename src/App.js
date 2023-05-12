@@ -40,7 +40,7 @@ function App() {
 
   
   useEffect(() => {
-    if (window.location.href !== 'https://captcha-frontend.onrender.com/' && musicSound && !muted) {
+    if (window.location.href !== window.location.origin + '/' && musicSound && !muted) {
       const startMusic = () => playSound('music');
 
       document.body.addEventListener('click', startMusic);
@@ -89,8 +89,8 @@ function App() {
       <div className='mute-button' onClick={toggleSound}>
         {
           muted
-          ? <img src='/Mute_icon.svg'/>
-          : <img src='/Speaker_icon.svg'/>
+          ? <img src={window.location.origin + '/Mute_icon.svg'}/>
+          : <img src={window.location.origin + '/Speaker_icon.svg'}/>
         }
       </div>
       <Routes>
