@@ -89,8 +89,8 @@ function App() {
       <div className='mute-button' onClick={toggleSound}>
         {
           muted
-          ? <img src={window.location.origin + '/Mute_icon.svg'}/>
-          : <img src={window.location.origin + '/Speaker_icon.svg'}/>
+          ? <img src='/mute-icon.svg'/>
+          : <img src='/speaker-icon.svg'/>
         }
       </div>
       <Routes>
