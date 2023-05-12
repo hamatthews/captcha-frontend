@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import '../styles/menu.css';
 
-export default function GameOver({level}) {
+export default function GameOver({level, setLeaders, playSound}) {
     const navigate = useNavigate();
 
     const [displayOn, setDisplayOn] = useState(false);
@@ -20,6 +20,13 @@ export default function GameOver({level}) {
     const changePage = path => {
         setDisplayOn(false);
         setTimeout(() => navigate(path), 600);
+
+        if (path === '/game') {
+            playSound('start');
+        }
+        else {
+            playSound('beep');
+        }
     }
 
     const submitScore = e => {
@@ -27,18 +34,27 @@ export default function GameOver({level}) {
             if (!submitted && inputRef.current.value.trim()) {
                 setSubmitted(true);
     
+                const entry = {
+                    name: inputRef.current.value.trim(),
+                    level
+                }
+
+                setLeaders(prevLeaders => [...prevLeaders, entry]);
+
                 fetch("https://captcha-backend.onrender.com/scoreboard/", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({name: inputRef.current.value.trim(), level})
+                    body: JSON.stringify(entry)
                 })    
+                playSound('beep'); 
             }
             else if (!submitted) {
                 inputRef.current.style.outline = '3px solid red';
                 inputRef.current.focus();
-            }    
+                playSound('game-over'); 
+            }
         }
 
     }

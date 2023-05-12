@@ -4,7 +4,7 @@ import CaptchaImage from './captchaImage';
 
 import '../styles/captchaBlock.css';
 
-export default function CaptchaBlock({level, timer, blockIndex, blockData, setBlockData}) {
+export default function CaptchaBlock({level, timer, blockIndex, blockData, setBlockData, playSound}) {
     const {imageList, imageType, challengeTypes, verified} = blockData[blockIndex];
 
     // console.log(blockData[blockIndex])
@@ -41,6 +41,8 @@ export default function CaptchaBlock({level, timer, blockIndex, blockData, setBl
             }
             else return false;
         })
+
+        if (verification) playSound('beep');
     
         setBlockData(prevBlockData => {
             const arr = [...prevBlockData];

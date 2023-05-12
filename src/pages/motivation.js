@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import '../styles/menu.css';
 
-export default function Motivation() {
+export default function Motivation({playSound}) {
     const navigate = useNavigate();
 
     const [displayOn, setDisplayOn] = useState(false);
@@ -39,6 +39,7 @@ export default function Motivation() {
     const changePage = path => {
         setDisplayOn(false);
         setTimeout(() => navigate(path), 600);
+        playSound('beep');
     }
     
 
@@ -50,11 +51,11 @@ export default function Motivation() {
                     <img src='/arrow-wheel.svg'/>
                     <h1>Quotes About Being Human</h1>
                 </div>
-                <div className='quote-block'>
+                <div className='text-block'>
                     <p>{quote.content}</p>
                     <p className='author-name'>- {quote.author}</p>
                 </div>
-                <button className='new-quote-button' onClick={generateQuote}>New Quote</button>
+                <button className='new-quote-button' onClick={() => {generateQuote(); playSound('beep');}}>New Quote</button>
                 <button className='menu-button' onClick={() => changePage('/menu')}>Main Menu</button>
             </div>
             <div className={`menu-flash ${displayClass}`}></div>

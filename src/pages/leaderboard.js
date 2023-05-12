@@ -3,17 +3,12 @@ import {useNavigate} from 'react-router-dom';
 
 import '../styles/menu.css';
 
-export default function Leaderboard() {
+export default function Leaderboard({playSound, leaders}) {
     const navigate = useNavigate();
 
     const [displayOn, setDisplayOn] = useState(false);
-    const [leaders, setLeaders] = useState([]);
 
     useEffect(() => {
-        fetch("https://captcha-backend.onrender.com/scoreboard/")
-        .then(res => res.json())
-        .then(data => setLeaders(data.sort((a,b) => b.level - a.level)))
-
         setTimeout(() => setDisplayOn(true));
     }, [])
 
@@ -22,6 +17,7 @@ export default function Leaderboard() {
     const changePage = path => {
         setDisplayOn(false);
         setTimeout(() => navigate(path), 600);
+        playSound('beep');
     }
 
     return (
@@ -32,10 +28,25 @@ export default function Leaderboard() {
                     <h1>Leaderboard</h1>
                 </div>
                 <div className='score-column'>{
-                    leaders.map((e,i) => <div className='score-entry' key={`score-${i}`}>
-                        <div>{e.name}</div>
-                        <div>Level {e.level}</div>
-                    </div>)
+                    leaders.length
+                        ? leaders.sort((a,b) => b.level - a.level).map((e,i) => {
+                            return <div className='score-entry' key={`score-${i}`}>
+                                <div>{e.name}</div>
+                                <div>Level {e.level}</div>
+                            </div>
+                        })
+                        : <>
+                            <div className='loading-caption'>Loading</div>
+                            <div className='loading loading-1'>
+                                <div className='loading-light'></div>
+                            </div>
+                            <div className='loading loading-2'>
+                                <div className='loading-light'></div>
+                            </div>
+                            <div className='loading loading-3'>
+                                <div className='loading-light'></div>
+                            </div>
+                        </>
                 }</div>
                 <button className='motivation-button' onClick={() => changePage('/menu')}>Main Menu</button>
             </div>

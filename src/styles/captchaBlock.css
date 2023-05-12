@@ -32,7 +32,7 @@
 .block-flash.display-on {
     box-shadow:
         0 0 0 var(--bg-1),
-        0 0 0 white,
+        0 0 0 rgba(255,255,255),
         0 0 0 var(--blue-1)
     ;
 }

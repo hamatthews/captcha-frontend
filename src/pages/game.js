@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import CaptchaBlock from '../components/captchaBlock';
 import '../styles/game.css';
 
-export default function Game({level, setLevel}) {
+export default function Game({level, setLevel, playSound}) {
     const navigate = useNavigate();
 
     const [timer, setTimer] = useState(-1);
@@ -27,6 +27,7 @@ export default function Game({level, setLevel}) {
     useEffect(() => {        
         if (blockData.some(e => e.verified === false)) {
             setTimeout(() => navigate('/gameOver'), 600);
+            playSound('game-over');
         }
         else if (blockData.length && blockData.every(e => e.verified)) {
             setLevel(prevLevel => prevLevel + 1);
@@ -36,6 +37,7 @@ export default function Game({level, setLevel}) {
     useEffect(() => {
         if (timer > 10) {
             setTimeout(() => navigate('/gameOver'), 600);
+            playSound('game-over');
         }
     }, [timer])
 
@@ -126,7 +128,7 @@ export default function Game({level, setLevel}) {
         <div className='game-content'>
             <div className='level-tracker'>Level: {level}</div>
             <div className='captcha-blocks'>
-                {blockData.map((e,i) => <CaptchaBlock blockIndex={i} {...{level, timer, blockData, setBlockData}} key={`block-${i}`}/>)}
+                {blockData.map((e,i) => <CaptchaBlock blockIndex={i} {...{level, timer, blockData, setBlockData, playSound}} key={`block-${i}`}/>)}
             </div>
             <div className='timer-bar' style={timerWidth}></div>
         </div>

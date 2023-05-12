@@ -1,9 +1,9 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import '../styles/start.css';
 
-export default function Start() {
+export default function Start({musicSound, playSound}) {
     const navigate = useNavigate();
 
     const [displayOn, setDisplayOn] = useState(false);
@@ -12,8 +12,17 @@ export default function Start() {
 
     const clickCheckbox = () => {
         setDisplayOn(true);
+        playSound('start');
+        playSound('music');
         setTimeout(() => navigate('/menu'), 1000)
     }
+
+    useEffect(() => {
+        if (musicSound) {
+            musicSound.pause();
+            musicSound.currentTime = 0;
+        }
+    }, [musicSound])
 
     return (
         <div className='start-page'>
