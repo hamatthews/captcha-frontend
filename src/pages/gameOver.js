@@ -17,7 +17,7 @@ export default function GameOver({level}) {
     const displayClass = displayOn ? 'display-on' : '';
     const submittedClass = submitted ? 'submitted' : '';
 
-    const switchPage = path => {
+    const changePage = path => {
         setDisplayOn(false);
         setTimeout(() => navigate(path), 600);
     }
@@ -52,8 +52,8 @@ export default function GameOver({level}) {
                 </div>
                 <input className={`name-entry ${submittedClass}`} ref={inputRef} maxlength='12' placeholder='Enter your name' onKeyDown={submitScore}/>
                 <button className={`submit-button ${submittedClass}`} onClick={submitScore}>Submit Score</button>
-                <button className='new-game-button' onClick={() => switchPage('/game')}>New Game</button>
-                <button className='menu-button' onClick={() => switchPage('/menu')}>Main Menu</button>
+                <button className='new-game-button' onClick={() => changePage('/game')}>New Game</button>
+                <button className='menu-button' onClick={() => changePage('/menu')}>Main Menu</button>
             </div>
             <div className={`menu-flash ${displayClass}`}></div>
 

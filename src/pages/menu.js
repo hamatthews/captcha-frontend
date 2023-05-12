@@ -28,7 +28,7 @@ export default function Menu() {
                 </div>
                 <button className='new-game-button' onClick={() => changePage('/game')}>New Game</button>
                 <button className='leaderboard-button'onClick={() => changePage('/leaderboard')}>Leaderboard</button>
-                <button className='motivation-button'>Motivation</button>
+                <button className='motivation-button' onClick={() => changePage('/motivation')}>Motivation</button>
             </div>
             <div className={`menu-flash ${displayClass}`}></div>
         </div>
