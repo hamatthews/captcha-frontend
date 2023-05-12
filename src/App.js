@@ -20,6 +20,7 @@ function App() {
 
   if (startSound) {
     startSound.volume = .1;
+    beepSound.volume = .5;
     gameOverSound.volume = .005;
     musicSound.volume = .03;
     musicSound.loop = true;  
