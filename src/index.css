@@ -1,7 +1,7 @@
 * {
   margin: 0;
-
   --blue-1: rgb(45,130,235);
+  --bg-1: rgb(30,30,50);
 }
 
 body {
@@ -12,6 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(30,30,50);
+  width: 100vw;
+  height: 100vh;
 }
 
 code {
