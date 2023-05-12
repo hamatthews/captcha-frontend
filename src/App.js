@@ -40,7 +40,7 @@ function App() {
 
   
   useEffect(() => {
-    if (window.location.href !== 'http://localhost:3000/' && musicSound && !muted) {
+    if (window.location.href !== 'https://captcha-frontend.onrender.com/' && musicSound && !muted) {
       const startMusic = () => playSound('music');
 
       document.body.addEventListener('click', startMusic);
